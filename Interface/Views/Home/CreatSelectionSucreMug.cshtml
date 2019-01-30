@@ -1,0 +1,60 @@
+﻿@model Interface.Views.Home.ChoixBoissonSucreMugViewModel
+
+@{
+    ViewBag.Title = "Désirez-vous utiliser le mug personel ?";
+}
+<link href="~/Style/StyleSheet1.css" rel="stylesheet" />
+<h2>Désirez-vous utiliser le mug personel ?</h2>
+
+<table class="table">
+    <tr class="container">
+        <th>
+            @Html.Hidden("IdBoisson")
+        </th>
+        <th>
+            @Html.DisplayName("NomBoisson")
+        </th>
+        <th>
+            @Html.Hidden("IdQuantiteSucre")
+        </th>
+        <th>
+            @Html.DisplayName("LibelleQuantiteSucre")
+        </th>
+        <th>
+            @Html.DisplayName("MugPerso")
+        </th>
+        <th></th>
+    </tr>
+    <tr class="container">
+        <td>
+            @Html.HiddenFor(model => model.Boisson.IdM)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Boisson.NomBoissonM)
+        </td>
+        <td>
+            @Html.HiddenFor(model => model.Sucre.IdM)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Sucre.QuantiteM)
+        </td>
+        <td>
+            @Html.ActionLink("Oui", "CreatSelection", new { idBoisson = Model.Boisson.IdM, idSucre = Model.Sucre.IdM, mugPerso = true },
+           new { onclick = "return  DisplayProgressMessage(this, 'Waiting...'); " }) |
+            @Html.ActionLink("Non", "CreatSelection", new { idBoisson = Model.Boisson.IdM, idSucre = Model.Sucre.IdM, mugPerso = false },
+           new { onclick = "return  DisplayProgressMessage(this, 'Waiting...'); " }) |
+            @Html.ActionLink("Back", "CreatSelectionSucre", new { idBoisson = Model.Boisson.IdM, idSucre = Model.Sucre.IdM })
+        </td>
+    </tr>
+</table>
+@Html.ActionLink("Retour à l'accueil", "Accueil", "Home")
+<div class="submit-progress hidden">
+    <label>Please wait while preparing your drink...</label>
+</div>
+<script>
+    function DisplayProgressMessage(ctl, msg) {
+        $(ctl).prop("disabled", true).text(msg);
+        $(".submit-progress").removeClass("hidden");
+        return true;
+    };
+</script>

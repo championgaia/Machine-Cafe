@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Accueil";
+}
+<link href="~/Style/StyleSheet1.css" rel="stylesheet" />
+<h2>Accueil</h2>
+<h3>Veillez sélectionner une machine</h3>
+<div>
+    <input type="button" class="btn btn-block block" value="Machine cafe MVC" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
+    <input type="button" class="btn btn-block block" value="Machine cafe WebAPI" onclick="@("window.location.href='" + @Url.Action("Index", "WebApi") + "'");" />
+</div>
+

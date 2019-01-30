@@ -1,0 +1,60 @@
+﻿
+
+@model Interface.Views.Home.ListBoissonViewModel
+
+@{
+    ViewBag.Title = "Veillez choisir votre boisson";
+}
+<link href="~/Style/StyleSheet1.css" rel="stylesheet" />
+<h2>Veillez choisir votre boisson</h2>
+
+
+<table class=" container  table-striped">
+    <tr class="container">
+        <th>
+            @Html.Hidden("IdVM")
+        </th>
+        <th>
+            @Html.DisplayName("Boisson")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListeBoissonVM)
+    {
+        <tr class="container">
+            <td>
+                @Html.HiddenFor(modelItem => item.IdVM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomBoissonVM)
+            </td>
+            <td>
+                @Html.ActionLink("Choisir", "CreatSelectionSucre", new { idBoisson = item.IdVM })
+            </td>
+        </tr>
+    }
+    <tr class="container">
+        <td>
+            @Html.DisplayName("Last Selection")
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.LastSelectionVM.NomBoissonM)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.LastSelectionVM.QuantitySucreM)
+        </td>
+        <td>
+            @Html.DisplayName(Model.LastSelectionVM.MugPersonM == true ? "Mug perso" : "pas de mug Perso")
+        </td>
+        <td>
+            @Html.ActionLink("Choisir", "CreatSelection", new { idBoisson = Model.LastSelectionVM.FkBoissonM,
+                                                            idSucre = Model.LastSelectionVM.FkQuantiteSucreM,
+                                                            mugPerso = Model.LastSelectionVM.MugPersonM })
+        </td>
+    </tr>
+
+</table>
+@Html.ActionLink("Retour à l'accueil", "Accueil", "Home")
+
+

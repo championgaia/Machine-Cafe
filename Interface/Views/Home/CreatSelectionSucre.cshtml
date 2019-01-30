@@ -1,0 +1,47 @@
+﻿@model Interface.Views.Home.ChoixBoissonSucreViewModel
+
+@{
+    ViewBag.Title = "Veillez choisir la quantité de sucre";
+}
+<link href="~/Style/StyleSheet1.css" rel="stylesheet" />
+<h2>Veillez choisir la quantité de sucre</h2>
+
+<table class="table">
+    <tr class="container">
+        <th>
+            @Html.Hidden("IdBoisson")
+        </th>
+        <th>
+            @Html.Hidden("NomBoisson")
+        </th>
+        <th>
+            @Html.Hidden("IdQuantiteSucre")
+        </th>
+        <th>
+            @Html.DisplayName("LibelleQuantiteSucre")
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Libelles.ListeLibelle)
+    {
+        <tr class="container">
+            <td>
+                @Html.HiddenFor(model => model.Boisson.IdM)
+            </td>
+            <td>
+                @Html.HiddenFor(model => model.Boisson.NomBoissonM)
+            </td>
+            <td>
+                @Html.HiddenFor(modelItem => item.IdM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantiteM)
+            </td>
+            <td>
+                @Html.ActionLink("Choisir", "CreatSelectionSucreMug", new { idBoisson = Model.Boisson.IdM, idSucre = item.IdM }) |
+                @Html.ActionLink("Back", "Index", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Retour à l'accueil", "Accueil", "Home")

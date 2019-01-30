@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MachineCafeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="CreatSelection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSucre" Type="int" Mode="In" />
+          <Parameter Name="mugPerso" Type="nvarchar" Mode="In" />
+          <Parameter Name="idBoisson" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetBoisson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idBoisson" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetLastSelection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSucre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSucre" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="MachineCafeModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MachineCafeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MachineCafeContext" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="GetBoisson" ReturnType="Collection(MachineCafeModel.GetBoisson_Result)">
+          <Parameter Name="idBoisson" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSucre" ReturnType="Collection(MachineCafeModel.GetSucre_Result)" >
+          <Parameter Name="idSucre" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreatSelection">
+            <Parameter Name="idSucre" Mode="In" Type="Int32" />
+            <Parameter Name="mugPerso" Mode="In" Type="String" />
+            <Parameter Name="idBoisson" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetLastSelection" ReturnType="Collection(MachineCafeModel.GetLastSelection_Result3)" />
+        </EntityContainer>
+        <ComplexType Name="GetBoisson_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetLastSelection_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="QuantiteSucre" Nullable="false" />
+          <Property Type="String" Name="MugPerso" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="FkBoisson" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetLastSelection_Result1">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="QuantiteSucre" Nullable="false" />
+          <Property Type="String" Name="MugPerso" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="FkBoisson" Nullable="false" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetLastSelection_Result2">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Quantite" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MugPerso" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="FkBoisson" Nullable="false" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetSucre_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Quantite" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetLastSelection_Result3">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Quantite" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MugPerso" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="FkBoisson" Nullable="false" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="FkQuantiteSucre" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MachineCafeModelStoreContainer" CdmEntityContainer="MachineCafeContext" >
+          <FunctionImportMapping FunctionImportName="GetBoisson" FunctionName="MachineCafeModel.Store.GetBoisson">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MachineCafeModel.GetBoisson_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSucre" FunctionName="MachineCafeModel.Store.GetSucre">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MachineCafeModel.GetSucre_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Quantite" ColumnName="Quantite" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreatSelection" FunctionName="MachineCafeModel.Store.CreatSelection" />
+          <FunctionImportMapping FunctionImportName="GetLastSelection" FunctionName="MachineCafeModel.Store.GetLastSelection">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MachineCafeModel.GetLastSelection_Result3">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Quantite" ColumnName="Quantite" />
+                <ScalarProperty Name="MugPerso" ColumnName="MugPerso" />
+                <ScalarProperty Name="FkBoisson" ColumnName="FkBoisson" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="FkQuantiteSucre" ColumnName="FkQuantiteSucre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

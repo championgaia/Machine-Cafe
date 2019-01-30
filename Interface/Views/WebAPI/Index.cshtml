@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Machine Cafe WebAPI";
+}
+
+<h2>Machine Cafe WebAPI</h2>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Style/StyleSheet1.css" rel="stylesheet" />
+<div id="div1" class=" danger">
+    <div class="container">
+        <div class="block">Select votre boisson</div>
+        <div id="contentBoisson" class="block"></div>
+        <div class="block">Select quantite de sucre</div>
+        <div id="contentSucre" class="block"></div>
+        <div class="block">Utilisez vous mug personel</div>
+        <div class="block">
+            Oui<input type="radio" id="mugPerso" class="mugPerso" name="selection" value="true" />
+            Non<input type="radio" id="mugPerso" class="mugPerso" name="selection" value="false" />
+        </div>
+        <div class="block">
+            <input type="submit" id="selectionChoix" class="selectionChoix success" name="Submit" />
+        </div>
+        <div class="block">Last Selection</div>
+        <div id="div2" class="block">
+            <table class="table-bordered">
+                <tr>
+                    <th>Boisson&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>Quantite Sucre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    <th>MugPerso&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                </tr>
+                <tr id="contentLast"></tr>
+            </table>
+
+        </div>
+        <div id="message"></div>
+    </div>
+    <input type="button" class="btn btn-block block" value="Retour à l'accueil" onclick="@("window.location.href='" + @Url.Action("Accueil", "Home") + "'");" />
+</div>
+<script src="~/Scripts/WebAPIScript.js"></script>

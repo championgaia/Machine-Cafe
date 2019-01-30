@@ -1,0 +1,22 @@
+﻿
+.btn {
+    font-size: larger;
+}
+
+.container {
+    width: 100%;
+    background: #eee;
+    margin: 10px auto;
+    position: relative;
+    text-align: center;
+    font-size: larger;
+}
+
+.block {
+    background: linear-gradient();
+    height: 40px;
+    width: 1000px;
+    display: inline-block;
+    margin: 10px;
+    font-size: larger;
+}
